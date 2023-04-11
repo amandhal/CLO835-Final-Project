@@ -3,6 +3,8 @@ from pymysql import connections
 import os
 import random
 import argparse
+import boto3
+from botocore.client import Config
 
 app = Flask(__name__)
 
@@ -35,6 +37,18 @@ color_codes = {
     "darkblue": "#130f40",
     "lime": "#C1FF9C",
 }
+
+# Create a session with the IAM role attached to the worker nodes
+session = boto3.Session()
+
+# Create an S3 client using the session
+client = session.client('s3')
+
+# Download the S3 object to a local file
+bucket_name = 's3-fp'
+object_key = 'kubernetes.svg'
+local_file_path = '/app/static/kubernetes.svg'
+client.download_file(bucket_name, object_key, local_file_path)
 
 # Create a string of supported colors
 SUPPORTED_COLORS = ",".join(color_codes.keys())
