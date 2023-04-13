@@ -5,6 +5,7 @@ metadata:
   labels:
     app: mysql
 spec:
+  serviceAccountName: clo835
   volumes:
     - name: ebs
       persistentVolumeClaim:
