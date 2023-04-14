@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+  labels:
+    app: employees
+spec:
+  serviceAccountName: clo835
+  containers:
+  - name: ambassador
+    image: luksa/kubectl-proxy
+  - name: app
+    image: 472108177454.dkr.ecr.us-east-1.amazonaws.com/app:latest
+    env:
+    - name: BUCKET_NAME
+      valueFrom:
+        configMapKeyRef:
+          name: image-location
+          key: bucket-name
+    - name: OBJECT_KEY
+      valueFrom:
+        configMapKeyRef:
+          name: image-location
+          key: object-key
+    - name: LOCAL_FILE_PATH
+      valueFrom:
+        configMapKeyRef:
+          name: image-location
+          key: local-file-path
+    - name: DATABASE
+      valueFrom:
+        configMapKeyRef:
+          name: image-location
+          key: database
+    - name: DBHOST
+      value: "mysql.final"
+    - name: DBPORT
+      value: "3306"
+    - name: DBUSER
+      valueFrom:
+        secretKeyRef:
+          name: secrets-db
+          key: username
+    - name: DBPWD
+      valueFrom:
+        secretKeyRef:
+          name: secrets-db
+          key: password
+    ports:
+    - containerPort: 8080      
