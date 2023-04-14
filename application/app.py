@@ -14,6 +14,7 @@ DBPWD = os.environ.get("DBPWD") or "passwors"
 DATABASE = os.environ.get("DATABASE") or "employees"
 COLOR_FROM_ENV = os.environ.get('APP_COLOR') or "pink"
 DBPORT = int(os.environ.get("DBPORT"))
+APP_PORT= int(os.environ.get("APP_PORT"))
 BUCKET_NAME = os.environ.get("BUCKET_NAME")
 OBJECT_KEY = os.environ.get("OBJECT_KEY")
 LOCAL_FILE_NAME = os.environ.get("LOCAL_FILE_NAME")
@@ -147,4 +148,4 @@ if __name__ == '__main__':
         print("Color not supported. Received '" + COLOR + "' expected one of " + SUPPORTED_COLORS)
         exit(1)
 
-    app.run(host='0.0.0.0',port=8080,debug=True)
+    app.run(host='0.0.0.0',port=APP_PORT,debug=True)
