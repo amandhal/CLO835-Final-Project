@@ -131,6 +131,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--color', required=False)
     args = parser.parse_args()
+    
+    print("https://" + BUCKET_NAME + '.amazonaws.com/' + OBJECT_KEY)
 
     if args.color:
         print("Color from command line argument =" + args.color)
