@@ -12,6 +12,11 @@ spec:
   - name: app
     image: 472108177454.dkr.ecr.us-east-1.amazonaws.com/app:latest
     env:
+    - name: APP_PORT
+      valueFrom:
+        configMapKeyRef:
+          name: image-location
+          key: app-port
     - name: BUCKET_NAME
       valueFrom:
         configMapKeyRef:
@@ -22,11 +27,11 @@ spec:
         configMapKeyRef:
           name: image-location
           key: object-key
-    - name: LOCAL_FILE_PATH
+    - name: LOCAL_FILE_NAME
       valueFrom:
         configMapKeyRef:
           name: image-location
-          key: local-file-path
+          key: local-file-name
     - name: DATABASE
       valueFrom:
         configMapKeyRef:

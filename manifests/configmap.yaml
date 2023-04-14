@@ -7,5 +7,4 @@ data:
   object-key: "images/kubernetes.svg"
   local-file-name: "kubernetes.svg"
   database: "employees"
-  APP_PORT: '81'
-  LB_SERVICE_PORT: '80'
+  app-port: 81
