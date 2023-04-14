@@ -62,11 +62,11 @@ COLOR = random.choice(["red", "green", "blue", "blue2", "darkblue", "pink", "lim
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('addemp.html', color=color_codes[COLOR])
+    return render_template('addemp.html', color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME)
 
 @app.route("/about", methods=['GET','POST'])
 def about():
-    return render_template('about.html', color=color_codes[COLOR])
+    return render_template('about.html', color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME)
     
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
@@ -90,11 +90,11 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('addempoutput.html', name=emp_name, color=color_codes[COLOR])
+    return render_template('addempoutput.html', name=emp_name, color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME)
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
-    return render_template("getemp.html", color=color_codes[COLOR])
+    return render_template("getemp.html", color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME)
 
 
 @app.route("/fetchdata", methods=['GET','POST'])
@@ -123,7 +123,7 @@ def FetchData():
         cursor.close()
 
     return render_template("getempoutput.html", id=output["emp_id"], fname=output["first_name"],
-                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR])
+                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME)
 
 if __name__ == '__main__':
     
