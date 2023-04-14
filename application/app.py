@@ -16,7 +16,7 @@ COLOR_FROM_ENV = os.environ.get('APP_COLOR') or "pink"
 DBPORT = int(os.environ.get("DBPORT"))
 BUCKET_NAME = os.environ.get("BUCKET_NAME")
 OBJECT_KEY = os.environ.get("OBJECT_KEY")
-LOCAL_FILE_PATH = os.environ.get("LOCAL_FILE_PATH")
+LOCAL_FILE_NAME = os.environ.get("LOCAL_FILE_NAME")
 
 # Create a connection to the MySQL database
 db_conn = connections.Connection(
@@ -46,6 +46,8 @@ session = boto3.Session()
 
 # Create an S3 client using the session
 client = session.client('s3')
+
+LOCAL_FILE_PATH = '/app/static/' + LOCAL_FILE_NAME
 
 # Download the S3 object to a local file
 client.download_file(BUCKET_NAME, OBJECT_KEY, LOCAL_FILE_PATH)
