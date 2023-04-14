@@ -18,6 +18,7 @@ APP_PORT= int(os.environ.get("APP_PORT"))
 BUCKET_NAME = os.environ.get("BUCKET_NAME")
 OBJECT_KEY = os.environ.get("OBJECT_KEY")
 LOCAL_FILE_NAME = os.environ.get("LOCAL_FILE_NAME")
+LB_SERVICE_PORT = int(os.environ.get("LB_SERVICE_PORT"))
 
 # Create a connection to the MySQL database
 db_conn = connections.Connection(
