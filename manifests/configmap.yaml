@@ -4,6 +4,7 @@ metadata:
   name: image-location
 data:
   bucket-name: "s3-fp"
-  object-key: "kubernetes.svg"
-  local-file-path: "/app/static/kubernetes.svg"
+  object-key: "images/kubernetes.svg"
+  local-file-name: "kubernetes.svg"
   database: "employees"
+  app-port: '81'
