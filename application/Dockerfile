@@ -8,6 +8,7 @@ RUN set -xe \
     && apt-get install -y mysql-client 
 RUN pip install --upgrade pip
 RUN pip install boto3
+RUN mkdir /app/static
 RUN pip install -r requirements.txt
 EXPOSE 8080
 ENTRYPOINT [ "python3" ]
