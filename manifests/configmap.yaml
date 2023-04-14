@@ -8,3 +8,4 @@ data:
   local-file-name: "kubernetes.svg"
   database: "employees"
   app-port: '81'
+  lb-svc-port: '80'
