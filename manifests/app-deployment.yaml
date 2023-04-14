@@ -19,7 +19,7 @@ spec:
       - name: ambassador
         image: luksa/kubectl-proxy
       - name: app
-        image: 472108177454.dkr.ecr.us-east-1.amazonaws.com/app:latest
+        image: 472108177454.dkr.ecr.us-east-1.amazonaws.com/app:2
         env:
         - name: APP_PORT
           valueFrom:
