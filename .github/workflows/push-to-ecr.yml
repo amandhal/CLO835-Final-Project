@@ -42,10 +42,12 @@ jobs:
         # Unit test
         docker network create final
         docker run -d --name db --net final -e MYSQL_ROOT_PASSWORD=pw $ECR_REGISTRY/$ECR_REPOSITORY_DB:$IMAGE_TAG
+        echo "Pause for 20 seconds to let container start"
+        sleep 20
         docker run -d -p 80:81 -e DBHOST=172.18.0.2 -e DBUSER=root -e DBPWD=pw -e DBPORT=3306 -e APP_PORT=81 -e BUCKET_NAME=s3-fp -e OBJECT_KEY=images/kubernetes.svg -e LOCAL_FILE_NAME=kubernetes.svg --name app --net final $ECR_REGISTRY/$ECR_REPOSITORY_APP:$IMAGE_TAG
         docker ps -a
         echo "Pause for 10 seconds to let container start"
-        sleep 5
+        sleep 10
         docker ps -a
         docker inspect db
         echo "db container logs"
