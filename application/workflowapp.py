@@ -49,7 +49,7 @@ color_codes = {
 session = boto3.Session()
 
 # Create an S3 client using the session
-client = session.client('s3',aws_access_key_id='ASIAW326XDAXKAUVQYPP',aws_secret_access_key='UoFfwiMBbOVnUWnQigc/9smgn0qLJPofwZ8nonXB',aws_session_token='FwoGZXIvYXdzECMaDNc+81P4mYtoHVB2JiLCAULD5R+/kQ2GBxGwyF5NSLnhzGGuLcSUFr3l1xTCmppN25NJXS2Gbegj+XDovfpJH7hAGlqIO7S/QAJi4zpJcPx5ifyxaBNPZQi1fNbavSmPDa2JlSyMmjOGLSGCHuqXx04CG24rC4QgZdPfilPMslWMWlwMvaqSD2cW35XZWxrMmzKvJJzMVnKmxMeWShp4tfF1C4zv/KLwD/4gL7qN8AmFt0R8AZuwteryboeLWScW04jxl/iqRnCuBcP0iLppYg1+KMqJ6KEGMi3ZJBvVv2wWGDZgcIxN+ZPPLVxkmJ0Ji8qhR7ixoL+t0vJlRm26pKEDN3o+8zk=')
+client = session.client('s3',aws_access_key_id=AWS_ACCESS_KEY_ID,aws_secret_access_key=AWS_SECRET_ACCESS_KEY,aws_session_token=AWS_SESSION_TOKEN)
 
 LOCAL_FILE_PATH = "/app/static/" + LOCAL_FILE_NAME
 
