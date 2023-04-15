@@ -44,8 +44,13 @@ jobs:
         docker run -d --name db --net final -e MYSQL_ROOT_PASSWORD=pw $ECR_REGISTRY/$ECR_REPOSITORY_DB:$IMAGE_TAG
         docker run -d -p 80:81 -e DBHOST=db -e DBUSER=root -e DBPWD=pw -e DBPORT=3306 -e APP_PORT=81 -e BUCKET_NAME=s3-fp -e OBJECT_KEY=images/kubernetes.svg -e LOCAL_FILE_NAME=kubernetes.svg --name app --net final $ECR_REGISTRY/$ECR_REPOSITORY_APP:$IMAGE_TAG
         docker ps -a
+        echo "Pause for 10 seconds to let container start"
         sleep 10
+        docker ps -a
+        curl localhost
         curl localhost -vvv
+        docker logs db
+        docker logs app
         
         # Docker push
         docker push $ECR_REGISTRY/$ECR_REPOSITORY_DB:$IMAGE_TAG
