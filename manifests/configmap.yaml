@@ -8,3 +8,4 @@ data:
   local-file-name: "kubernetes.svg"
   database: "employees"
   app-port: "81"
+  group-name: "GROUP NO. 10"

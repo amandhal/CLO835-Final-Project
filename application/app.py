@@ -18,6 +18,7 @@ APP_PORT= int(os.environ.get("APP_PORT"))
 BUCKET_NAME = os.environ.get("BUCKET_NAME")
 OBJECT_KEY = os.environ.get("OBJECT_KEY")
 LOCAL_FILE_NAME = os.environ.get("LOCAL_FILE_NAME")
+GROUP_NAME = os.environ.get("GROUP_NAME")
 
 # Create a connection to the MySQL database
 db_conn = connections.Connection(
@@ -62,11 +63,11 @@ COLOR = random.choice(["red", "green", "blue", "blue2", "darkblue", "pink", "lim
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('addemp.html', color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME)
+    return render_template('addemp.html', color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME, group_name=GROUP_NAME)
 
 @app.route("/about", methods=['GET','POST'])
 def about():
-    return render_template('about.html', color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME)
+    return render_template('about.html', color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME, group_name=GROUP_NAME)
     
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
@@ -90,7 +91,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('addempoutput.html', name=emp_name, color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME)
+    return render_template('addempoutput.html', name=emp_name, color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME, group_name=GROUP_NAME)
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
@@ -123,7 +124,7 @@ def FetchData():
         cursor.close()
 
     return render_template("getempoutput.html", id=output["emp_id"], fname=output["first_name"],
-                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME)
+                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME, group_name=GROUP_NAME)
 
 if __name__ == '__main__':
     
