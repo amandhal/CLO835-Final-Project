@@ -12,7 +12,7 @@ spec:
         claimName: pvc-fp
   containers:
   - name: mysql
-    image: 472108177454.dkr.ecr.us-east-1.amazonaws.com/db:latest
+    image: 472108177454.dkr.ecr.us-east-1.amazonaws.com/db:final
     env:
     - name: MYSQL_ROOT_PASSWORD
       valueFrom:
