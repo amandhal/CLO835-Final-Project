@@ -29,8 +29,8 @@ jobs:
     - name: Build, tag, and push image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY_DB: mysql
-        ECR_REPOSITORY_APP: web
+        ECR_REPOSITORY_DB: db
+        ECR_REPOSITORY_APP: app
         IMAGE_TAG: final
       run: |
         cd application
@@ -45,12 +45,12 @@ jobs:
         docker run -d -p 80:81 -e DBHOST=db -e DBUSER=root -e DBPWD=pw -e DBPORT=3306 -e APP_PORT=81 -e BUCKET_NAME=s3-fp -e OBJECT_KEY=images/kubernetes.svg -e LOCAL_FILE_NAME=kubernetes.svg --name app --net final $ECR_REGISTRY/$ECR_REPOSITORY_APP:$IMAGE_TAG
         docker ps -a
         echo "Pause for 10 seconds to let container start"
-        sleep 10
+        sleep 5
         docker ps -a
-        curl localhost
-        curl localhost -vvv
         docker logs db
         docker logs app
+        curl localhost
+        curl localhost -vvv
         
         # Docker push
         docker push $ECR_REGISTRY/$ECR_REPOSITORY_DB:$IMAGE_TAG
