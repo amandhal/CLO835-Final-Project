@@ -45,17 +45,17 @@ color_codes = {
     "lime": "#C1FF9C",
 }
 
+# Create a session with the IAM role attached to the worker nodes
+session = boto3.Session()
 
-s3 = boto3.resource('s3',
-                  aws_access_key_id=AWS_ACCESS_KEY_ID,
-                  aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-                  aws_session_token=AWS_SESSION_TOKEN,
-                  region_name='us-east-1')
+# Create an S3 client using the session
+client = session.client('s3',aws_access_key_id='ASIAW326XDAXKAUVQYPP',aws_secret_access_key='UoFfwiMBbOVnUWnQigc/9smgn0qLJPofwZ8nonXB',aws_session_token='FwoGZXIvYXdzECMaDNc+81P4mYtoHVB2JiLCAULD5R+/kQ2GBxGwyF5NSLnhzGGuLcSUFr3l1xTCmppN25NJXS2Gbegj+XDovfpJH7hAGlqIO7S/QAJi4zpJcPx5ifyxaBNPZQi1fNbavSmPDa2JlSyMmjOGLSGCHuqXx04CG24rC4QgZdPfilPMslWMWlwMvaqSD2cW35XZWxrMmzKvJJzMVnKmxMeWShp4tfF1C4zv/KLwD/4gL7qN8AmFt0R8AZuwteryboeLWScW04jxl/iqRnCuBcP0iLppYg1+KMqJ6KEGMi3ZJBvVv2wWGDZgcIxN+ZPPLVxkmJ0Ji8qhR7ixoL+t0vJlRm26pKEDN3o+8zk=')
 
-LOCAL_FILE_PATH = '/app/static/' + LOCAL_FILE_NAME
+LOCAL_FILE_PATH = "/app/static/" + LOCAL_FILE_NAME
 
 # Download the S3 object to a local file
-s3.download_file(BUCKET_NAME, OBJECT_KEY, LOCAL_FILE_PATH)
+client.download_file(BUCKET_NAME, OBJECT_KEY, LOCAL_FILE_PATH)
+
 
 # Create a string of supported colors
 SUPPORTED_COLORS = ",".join(color_codes.keys())
