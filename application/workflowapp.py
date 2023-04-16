@@ -21,6 +21,7 @@ AWS_SESSION_TOKEN = os.environ.get("AWS_SESSION_TOKEN")
 BUCKET_NAME = os.environ.get("BUCKET_NAME")
 OBJECT_KEY = os.environ.get("OBJECT_KEY")
 LOCAL_FILE_NAME = os.environ.get("LOCAL_FILE_NAME")
+GROUP_NAME = os.environ.get("GROUP_NAME")
 
 # Create a connection to the MySQL database
 db_conn = connections.Connection(
@@ -66,7 +67,7 @@ COLOR = random.choice(["red", "green", "blue", "blue2", "darkblue", "pink", "lim
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('addemp.html', color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME)
+    return render_template('addemp.html', color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME, group_name=GROUP_NAME)
 
 @app.route("/about", methods=['GET','POST'])
 def about():
@@ -94,11 +95,11 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('addempoutput.html', name=emp_name, color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME)
+    return render_template('addempoutput.html', name=emp_name, color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME, group_name=GROUP_NAME)
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
-    return render_template("getemp.html", color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME)
+    return render_template("getemp.html", color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME, group_name=GROUP_NAME)
 
 
 @app.route("/fetchdata", methods=['GET','POST'])
@@ -127,7 +128,7 @@ def FetchData():
         cursor.close()
 
     return render_template("getempoutput.html", id=output["emp_id"], fname=output["first_name"],
-                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME)
+                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR], local_file_name=LOCAL_FILE_NAME, group_name=GROUP_NAME)
 
 if __name__ == '__main__':
     
