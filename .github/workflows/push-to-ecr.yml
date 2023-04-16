@@ -47,7 +47,7 @@ jobs:
         
         printenv
         sleep 15
-        docker run -d -p 80:81 -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} -e AWS_SESSION_TOKEN=${{ secrets.AWS_SESSION_TOKEN }} -e DBHOST=db -e DBUSER=root -e DBPWD=pw -e DBPORT=3306 -e APP_PORT=81 -e BUCKET_NAME=s3-fp -e OBJECT_KEY=images/kubernetes.svg -e LOCAL_FILE_NAME=kubernetes.svg -e GROUP_NAME= group10 --name app --net final $ECR_REGISTRY/$ECR_REPOSITORY_APP:$IMAGE_TAG workflowapp.py
+        docker run -d -p 80:81 -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} -e AWS_SESSION_TOKEN=${{ secrets.AWS_SESSION_TOKEN }} -e DBHOST=db -e DBUSER=root -e DBPWD=pw -e DBPORT=3306 -e APP_PORT=81 -e BUCKET_NAME=s3-fp -e OBJECT_KEY=images/kubernetes.svg -e LOCAL_FILE_NAME=kubernetes.svg -e GROUP_NAME=group10 --name app --net final $ECR_REGISTRY/$ECR_REPOSITORY_APP:$IMAGE_TAG workflowapp.py
         docker ps -a
         echo "Pause for 10 seconds to let container start"
         sleep 10
