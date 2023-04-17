@@ -47,7 +47,6 @@
 
 ### Deploy metrics server
 ```kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.5.0/components.yaml```
-```kubectl get apiservice v1beta1.metrics.k8s.io -o json | jq '.status'```
 
 ### Set the cpu resource request for app deployment to 50m 
 ```kubectl set resources deploy app -n final --requests=cpu=50m```
